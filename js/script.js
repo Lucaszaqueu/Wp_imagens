@@ -3,6 +3,7 @@ const searchBtn = document.getElementById("searchBtn");
 const colum1 = document.getElementById("col-1");
 const colum2 = document.getElementById("col-2");
 const colum3 = document.getElementById("col-3");
+const colum4 = document.getElementById("col-4");
 const erroGrid = document.getElementById("erroGrid"); 
 
 let imageURLS = [];
@@ -12,32 +13,26 @@ window.onload = () => {
 }
 
 const displayImage = () => {
-    colum1.innerHTML = "";
-    colum2.innerHTML = "";
-    colum3.innerHTML = "";
+    const columns = [colum1, colum2, colum3, colum4];
+    const fragments = [document.createDocumentFragment(), 
+        document.createDocumentFragment(), 
+        document.createDocumentFragment(),
+        document.createDocumentFragment()];
 
-    const fragment1 = document.createDocumentFragment();
-    const fragment2 = document.createDocumentFragment();
-    const fragment3 = document.createDocumentFragment();
+    columns.forEach(column => column.innerHTML = "");
 
     imageURLS.forEach((url, index) => {
         const image = document.createElement('img');
         image.src = url; 
         image.className="mt-3";
         image.setAttribute("width", "100%");
+        image.setAttribute("height", "500px");
 
-        if ((index + 1) % 3 === 0) {
-            fragment1.appendChild(image);
-        } else if ((index + 2) % 3 === 0) {
-            fragment2.appendChild(image);
-        } else {
-            fragment3.appendChild(image);
-        }
+        const fragmentIndex = index % 4;
+        fragments[fragmentIndex].appendChild(image);
     });
 
-    colum1.appendChild(fragment1);
-    colum2.appendChild(fragment2);
-    colum3.appendChild(fragment3);
+    columns.forEach((column, index) => column.appendChild(fragments[index]));
 }
 
 function search(event) {
