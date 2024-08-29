@@ -14,8 +14,8 @@ async function fetchData() {
         });
 
         displayImage();
-    } catch (error) {
-        handleError(error);
+    } catch (errorMsg) {
+        handleError(errorMsg);
     }
 }
 
@@ -33,12 +33,12 @@ async function fetchSearchData(key) {
         });
 
         displayImage();
-    } catch (error) {
-        handleError(error);
+    } catch (errorMsg) {
+        handleError(errorMsg);
     }
 }
 
 function handleError(errorMsg) {
     console.log(errorMsg);
-    erroGrid.innerHTML = "<h4>Não foi possível buscar os dados "+errorMsg+"</h4>";
+    erroGrid.innerHTML = ("Não foi possível buscar os dados " + errorMsg);
 }

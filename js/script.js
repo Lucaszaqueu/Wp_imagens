@@ -26,7 +26,6 @@ const displayImage = () => {
         image.src = url; 
         image.className="mt-3";
         image.setAttribute("width", "100%");
-        image.setAttribute("height", "auto");
 
         const fragmentIndex = index % 4;
         fragments[fragmentIndex].appendChild(image);
@@ -39,5 +38,12 @@ function search(event) {
     event.preventDefault();
     if(searchKey.value != ''){
         fetchSearchData(searchKey.value);
+    }
+}
+
+function searchItens(query) {
+    if (query !== '') {
+        fetchSearchData(query);
+        return;
     }
 }
